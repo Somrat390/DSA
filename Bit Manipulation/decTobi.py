@@ -1,6 +1,5 @@
 def fun(n):
-    res = ""
-    ls = list(res)
+    ls = []
     while n != 0:
         ls += '1' if n%2 == 1 else '0'
         n //= 2
