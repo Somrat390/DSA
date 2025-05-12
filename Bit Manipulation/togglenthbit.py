@@ -1,5 +1,5 @@
 def toggle(n,i):
-    return n & (~(1<<i))
+    return n ^ (1<<i)
 
 n = int(input())
 
