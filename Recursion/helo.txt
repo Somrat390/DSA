@@ -1,0 +1,134 @@
+int i = 0
+
+def message():
+    print('hello world')
+    i += 1
+    if i == 5:
+        return
+    return message()
+
+message()
+
+this was my first approch to print hello world 5 times but its not work cause when function try to access 
+i = i+1 it intialize the i as local variable 
+
+$$$$$ To slove this problem what i do ??
+make i global in function
+int i = 0
+
+def message():
+    global i
+    print('hello world')
+    i += 1
+    if i == 5:
+        return
+    return message()
+
+message()
+
+But what was my final approch it was suggested from chatgpt
+when i will work with larger problem it will very so noisy to make global variable again and again
+
+
+def message(i =0):
+    print('hello world')
+    i += 1
+    if i == 5:
+        return
+    return message(i)
+
+message()  
+
+i = 0 is a default value here now i think i should check time and space complexity
+
+
+🔎 Step-by-step
+
+The function prints "hello world" and then recursively calls itself until i == 5.
+
+That means it executes exactly 5 times before stopping.
+
+Each recursive call is constant work (O(1)) except for the recursive overhead.
+
+The recursion depth is 5 → so the function stack has at most 5 frames.
+
+
+
+
+⏳ Time Complexity
+
+It does 5 print operations and 5 increments.
+
+So the total work = constant number of steps (5).
+
+✅ Time Complexity = O(1) (not O(n), because n here is not variable — it’s fixed 5).
+
+If you generalize (say instead of stopping at 5, you stop at n),
+
+Then Time = O(n).
+
+🗂 Space Complexity
+
+Each recursive call uses stack space.
+
+Max depth = 5.
+
+✅ Space Complexity = O(1) (since depth is fixed at 5).
+
+If generalized to n, space would be O(n).
+
+✅ Final Answer for your exact code:
+
+Time Complexity: O(1) (since it always runs 5 times, independent of input).
+
+Space Complexity: O(1) (since recursion depth is fixed at 5).
+
+
+
+
+
+For **your exact code** (where it always stops at 5), the time and space complexity are already **constant → O(1)**.
+That’s the lowest possible complexity in Big-O terms — you can’t go lower than constant.
+
+But there are two perspectives here 👇
+
+---
+
+### 1. **For your fixed `i == 5` case**
+
+* **Time complexity**: O(1) → Already minimal.
+* **Space complexity**: O(1), but note: Python recursion *does* push stack frames. Technically, your recursive version uses **O(5) = O(1)** stack space.
+* If you rewrite it **iteratively**, you completely avoid the recursion overhead (so practically *faster* and *less memory overhead*, but still O(1) in theory).
+
+```python
+for _ in range(5):
+    print("hello world")
+```
+
+This has no recursion stack → even more efficient in practice.
+
+---
+
+### 2. **If generalized to n (instead of fixed 5)**
+
+* Recursive version:
+
+  * **Time:** O(n)
+  * **Space:** O(n) (because of recursion stack)
+* Iterative version:
+
+  * **Time:** O(n) (you still need to print n times)
+  * **Space:** O(1) (no recursion stack). ✅ This is a real improvement.
+
+---
+
+✅ **So:**
+
+* For fixed 5 → already O(1), can’t reduce further in theory.
+* For variable `n` → iterative is better (O(1) space instead of O(n) space).
+
+---
+
+Do you want me to show you how Python internally wastes memory with recursion here (stack frames) so you can see the difference more concretely?
+
+
