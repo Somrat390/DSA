@@ -5,4 +5,5 @@ n = int(input())
 
 i = int(input())
 
-print(toggle(n,i))
+print(toggle(n,i)
+)

@@ -7,4 +7,4 @@ def TwoSum(arr,target):
             return (num_dict[diff],i)
         num_dict[num] = i
 
-print(TwoSum([2,7,11,15],9)) 
+print(TwoSum([2,7,11,15],13)) 
